@@ -1,11 +1,15 @@
 import Task from '../models/tasks.js';
 
-const getAllTasks = function(req,res) {
+const getAllTasks = function(req,res) { 
     res.send('all items from the file')
 }
 
 const postTask = async function (req,res) {
-    const task = await Task.create(req.body)
+    const task = await Task.create(req.body).then(function () {
+        console.log("success")
+    }).catch(function (error) {
+        console.log(error)
+    })
     res.status(201).json({task})
 }
 
