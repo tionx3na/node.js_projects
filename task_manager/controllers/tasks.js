@@ -1,11 +1,15 @@
+import Task from '../models/tasks.js';
+
 const getAllTasks = function(req,res) {
     res.send('all items from the file')
 }
 
-const postTask = function (req,res) {
-    res.send('post request for a new task')
+const postTask = async function (req,res) {
+    const task = await Task.create(req.body)
+    res.status(201).json({task})
 }
 
+ 
 const getSingleTask = function (req,res) {
     res.send('A single task from the file')
 }
